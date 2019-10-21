@@ -1,0 +1,126 @@
+#include <cstdio>
+#include <string>
+#include <cmath>
+#include <string.h>
+
+#ifdef _VORONEZH
+    #define VoronezhPrintf( code ) printf( code )
+#else
+    #define VoronezhPrintf( code )
+#endif
+
+bool Suriken();
+
+void 
+int main()
+    {
+    Suriken();
+    double x = 0.0;
+    double y = 1.0;
+    double z = 0.0;
+
+    double tmp = 0.0;
+    FILE* Tmp = fopen("input.txt", "r");
+    std::string TmpStr = {};
+    while (fscanf(Tmp, "%s%*[ ]", TmpStr.c_str()))
+        {
+        if(strcmp(TmpStr.c_str(), "len"))
+            {
+            fscanf(Tmp, "%Lf", &tmp);
+            Len(&x, &y, &z, tmp);
+            } else
+            {
+            char CharTmp = {};
+            fscanf(Tmp, "%c %Lf", &CharTmp, &tmp);
+            Rot(&x, &y, &z, tmp, CharTmp)
+            }
+        }
+    fclose(Tmp);
+    Tmp = fopen("output.txt", "w");
+    fprintf(Tmp, "%.1Lf %.1Lf %.1Lf", x, y, z);
+    fclose(Tmp);
+    return 0;
+    }
+
+void Len(long float* x, long float* y, long float* z, long float tmp)
+    {
+    *x *= tmp;
+    *y *= tmp;
+    *z *= tmp;
+    return;
+    }
+
+void Rot(long float* x, long float* y, long float* z, long float tmp, char axis)
+    {
+    switch(axis)
+        {
+        case ('x'):
+            {
+            double tmp1 = 0.0;
+            double tmp2 = 0.0;
+            tmp1 = *y * cos(tmp) - *z * sin(tmp);
+            tmp2 = *y * sin(tmp) + *z * cos(tmp);
+            *y = tmp1;
+            *z = tmp2;
+            break;
+            }
+
+        case ('y'):
+            {
+            double tmp1 = 0.0;
+            double tmp2 = 0.0;
+            tmp1 = *z * cos(tmp) - *x * sin(tmp);
+            tmp2 = *z * sin(tmp) + *x * cos(tmp);
+            *z = tmp1;
+            *x = tmp2;
+            break;
+            }
+
+        case ('z'):
+            {
+            double tmp1 = 0.0;
+            double tmp2 = 0.0;
+            tmp1 = *x * cos(tmp) - *y * sin(tmp);
+            tmp2 = *x * sin(tmp) + *y * cos(tmp);
+            *x = tmp1;
+            *y = tmp2;
+            break;
+            }
+        }
+        return;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool Suriken()
+    {
+    VoronezhPrintf("Soedinim vse razdeli matemotiki\n");
+    VoronezhPrintf("|          +----------\n|          |          \n|          |          \n|          |          \n|          |          \n|          |          \n+----------+---------+\n           |         |\n           |         |\n           |         |\n           |         |\n           |         |\n-----------+         |\n");
+    }
